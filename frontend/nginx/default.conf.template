@@ -1,0 +1,50 @@
+proxy_cache_path /var/cache/nginx/hls levels=1:2 keys_zone=hls:10m max_size=200m inactive=1m use_temp_path=off;
+
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+
+server {
+    listen 80;
+    root /usr/share/nginx/html;
+
+    location / {
+        try_files $uri /index.html;
+    }
+
+    location /assets/ {
+        add_header Cache-Control "public, max-age=31536000, immutable";
+    }
+
+    location /api/ {
+        proxy_pass ${API_UPSTREAM};
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_buffering off;
+        proxy_read_timeout 1h;
+    }
+
+    location /ws/ {
+        proxy_pass ${API_UPSTREAM};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header Host $host;
+        proxy_read_timeout 1h;
+    }
+
+    location /recordings/ {
+        proxy_pass ${API_UPSTREAM};
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+    }
+
+    location /media/ {
+        proxy_pass ${API_UPSTREAM};
+        proxy_cache hls;
+        proxy_cache_lock on;
+        proxy_cache_use_stale updating;
+        add_header X-Cache-Status $upstream_cache_status;
+    }
+}
