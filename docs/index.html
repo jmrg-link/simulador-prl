@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulador PRL · Arquitectura</title>
+  <meta name="description" content="Diagramas interactivos de la arquitectura del Simulador PRL: componentes, señalización WebRTC, emisión y grabación, y ciclos de estado.">
+  <style>
+    :root { color-scheme: light dark; --fondo: #f4f6f8; --texto: #14202b; --suave: #4a5866; --tarjeta: #fff; --borde: #d5dce3; }
+    @media (prefers-color-scheme: dark) { :root { --fondo: #0f151b; --texto: #e6ebf0; --suave: #9aa7b4; --tarjeta: #18212a; --borde: #2a3642; } }
+    body { margin: 0; font: 16px/1.5 system-ui, sans-serif; background: var(--fondo); color: var(--texto); }
+    main { max-width: 68rem; margin: 0 auto; padding: 3rem 1.25rem; }
+    h1 { margin: 0 0 .5rem; font-size: 2rem; }
+    p { color: var(--suave); max-width: 46rem; }
+    ul { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr)); }
+    a { display: block; height: 100%; color: inherit; text-decoration: none; background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 6px; overflow: hidden; }
+    a:hover, a:focus-visible { border-color: currentColor; }
+    img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-bottom: 1px solid var(--borde); }
+    h2 { font-size: 1.05rem; margin: .9rem 1rem .25rem; }
+    a p { margin: 0 1rem 1rem; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Simulador PRL</h1>
+    <p>Diagramas interactivos de la arquitectura. En cada uno se puede seguir una ruta, aislar un componente con lo que depende de él y abrir las fichas con el detalle.</p>
+    <ul>
+      <li><a href="arquitectura/arquitectura-general.html">
+        <picture><source media="(prefers-color-scheme: dark)" srcset="arquitectura/arquitectura-general-oscuro.png"><img src="arquitectura/arquitectura-general-claro.png" alt=""></picture>
+        <h2>Arquitectura general</h2><p>Navegador, API, procesos de vídeo y persistencia.</p></a></li>
+      <li><a href="arquitectura/senalizacion-webrtc.html">
+        <picture><source media="(prefers-color-scheme: dark)" srcset="arquitectura/senalizacion-webrtc-oscuro.png"><img src="arquitectura/senalizacion-webrtc-claro.png" alt=""></picture>
+        <h2>Señalización WebRTC</h2><p>Mensajes entre el emisor, el servidor y el espectador.</p></a></li>
+      <li><a href="arquitectura/flujo-emision-grabacion.html">
+        <picture><source media="(prefers-color-scheme: dark)" srcset="arquitectura/flujo-emision-grabacion-oscuro.png"><img src="arquitectura/flujo-emision-grabacion-claro.png" alt=""></picture>
+        <h2>Emisión y grabación</h2><p>Del lienzo al directo HLS y al MP4 con capítulos.</p></a></li>
+      <li><a href="arquitectura/estados-emision.html">
+        <picture><source media="(prefers-color-scheme: dark)" srcset="arquitectura/estados-emision-oscuro.png"><img src="arquitectura/estados-emision-claro.png" alt=""></picture>
+        <h2>Estados de una emisión</h2><p>STARTING, LIVE y ENDED.</p></a></li>
+      <li><a href="arquitectura/estados-grabacion.html">
+        <picture><source media="(prefers-color-scheme: dark)" srcset="arquitectura/estados-grabacion-oscuro.png"><img src="arquitectura/estados-grabacion-claro.png" alt=""></picture>
+        <h2>Estados de una grabación</h2><p>RECORDING, PROCESSING, READY y FAILED.</p></a></li>
+    </ul>
+  </main>
+</body>
+</html>
