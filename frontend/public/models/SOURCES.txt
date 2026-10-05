@@ -1,0 +1,23 @@
+Assets de Poly Haven (CC0) usados en los modelos:
+Barrel_01  https://polyhaven.com/a/Barrel_01  CC0
+Barrel_02  https://polyhaven.com/a/Barrel_02  CC0
+Shelf_01  https://polyhaven.com/a/Shelf_01  CC0
+bench_vice_01  https://polyhaven.com/a/bench_vice_01  CC0
+cardboard_box_01  https://polyhaven.com/a/cardboard_box_01  CC0
+concrete_wall_008  https://polyhaven.com/a/concrete_wall_008  CC0
+corrugated_iron  https://polyhaven.com/a/corrugated_iron  CC0
+denim_fabric  https://polyhaven.com/a/denim_fabric  CC0
+empty_warehouse_01  https://polyhaven.com/a/empty_warehouse_01  CC0
+fabric_leather_01  https://polyhaven.com/a/fabric_leather_01  CC0
+fabric_leather_02  https://polyhaven.com/a/fabric_leather_02  CC0
+fabric_pattern_07  https://polyhaven.com/a/fabric_pattern_07  CC0
+factory_wall  https://polyhaven.com/a/factory_wall  CC0
+garage_floor  https://polyhaven.com/a/garage_floor  CC0
+industrial_storage_cart  https://polyhaven.com/a/industrial_storage_cart  CC0
+korean_fire_extinguisher_01  https://polyhaven.com/a/korean_fire_extinguisher_01  CC0
+metal_jerrycan  https://polyhaven.com/a/metal_jerrycan  CC0
+metal_plate  https://polyhaven.com/a/metal_plate  CC0
+metal_tool_chest  https://polyhaven.com/a/metal_tool_chest  CC0
+metal_toolbox  https://polyhaven.com/a/metal_toolbox  CC0
+mounted_fluorescent_lights  https://polyhaven.com/a/mounted_fluorescent_lights  CC0
+plywood  https://polyhaven.com/a/plywood  CC0
