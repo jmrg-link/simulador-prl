@@ -18,12 +18,19 @@
     img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-bottom: 1px solid var(--borde); }
     h2 { font-size: 1.05rem; margin: .9rem 1rem .25rem; }
     a p { margin: 0 1rem 1rem; font-size: .9rem; }
+    .seccion { font-size: 1.25rem; margin: 2.5rem 0 1rem; }
+    video { display: block; width: 100%; border: 1px solid var(--borde); border-radius: 6px; background: #000; }
   </style>
 </head>
 <body>
   <main>
     <h1>Simulador PRL</h1>
-    <p>Diagramas interactivos de la arquitectura. En cada uno se puede seguir una ruta, aislar un componente con lo que depende de él y abrir las fichas con el detalle.</p>
+    <p>Una sesión completa en vídeo y los diagramas interactivos de la arquitectura. En cada diagrama se puede seguir una ruta, aislar un componente con lo que depende de él y abrir las fichas con el detalle.</p>
+    <section id="demo">
+      <h2 class="seccion">Demo</h2>
+      <video controls preload="metadata" poster="video/demo-poster.jpg" src="video/demo.mp4">Tu navegador no reproduce vídeo MP4.</video>
+    </section>
+    <h2 class="seccion">Arquitectura</h2>
     <ul>
       <li><a href="arquitectura/arquitectura-general.html">
         <picture><source media="(prefers-color-scheme: dark)" srcset="arquitectura/arquitectura-general-oscuro.png"><img src="arquitectura/arquitectura-general-claro.png" alt=""></picture>

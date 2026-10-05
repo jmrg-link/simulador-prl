@@ -10,6 +10,13 @@ el ratón o con las flechas. El lienzo WebGL de esa escena es la fuente de víde
 
 Los diagramas interactivos de la arquitectura están publicados en https://jmrg-link.github.io/simulador-prl/.
 
+## Demo
+
+Una sesión completa en modo aula: el alumno identifica los cuatro riesgos, el instructor lo sigue por WebRTC, un
+espectador lo ve por HLS y el informe reproduce la grabación por capítulos.
+
+[![Vista del alumno durante la sesión, con la ficha del cable eléctrico pelado](docs/video/demo-poster.jpg)](https://jmrg-link.github.io/simulador-prl/#demo)
+
 ## Cómo funciona
 
 Una sesión tiene tres partes: el briefing, un recorrido de tres minutos y el debriefing. Alumno e instructor
@@ -136,6 +143,7 @@ docs/
   prd/                       un documento de requisitos por capacidad
   arquitectura/              diagramas interactivos y sus vistas previas
   escena/                    vista del HDRI que ilumina la escena 3D
+  video/                     vídeo de la demo y su póster
 ```
 
 Son dos proyectos independientes, cada uno con su `package.json`, su lockfile y su `compose.yml`. No comparten
