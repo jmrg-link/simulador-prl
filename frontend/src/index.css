@@ -1,0 +1,100 @@
+@import "tailwindcss";
+@import "@fontsource-variable/archivo/wdth.css";
+@import "@fontsource-variable/martian-mono/index.css";
+
+@theme static {
+  --font-sans: "Archivo Variable", system-ui, sans-serif;
+  --font-mono: "Martian Mono Variable", ui-monospace, monospace;
+
+  --color-navy: #0d1b3d;
+  --color-navy-soft: #4a5878;
+  --color-jet: #d7262d;
+  --color-jet-deep: #b01d23;
+  --color-coupon: #ffffff;
+  --color-stock: #f2f2f0;
+  --color-rule: #c9ccd6;
+  --color-carbon: #4b2e83;
+  --color-carbon-copy: #ddd3f1;
+  --color-ok: #006b31;
+  --color-ok-tint: #dcefe3;
+  --color-jet-tint: #fbe3e4;
+
+  --color-jet-light: #ff8a8f;
+  --text-body: 0.9375rem;
+  --text-micro: 0.6875rem;
+  --spacing-22: 5.5rem;
+  --container-measure: 62ch;
+  --container-desk: 96rem;
+
+  --shadow-coupon: 0 1px 0 #0d1b3d14, 0 8px 18px -10px #0d1b3d40;
+  --drop-shadow-coupon: 0 6px 8px #0d1b3d2e;
+}
+
+@layer base {
+  body {
+    @apply bg-stock text-navy font-sans antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-jet);
+    outline-offset: 2px;
+  }
+}
+
+@utility caps {
+  font-stretch: 78%;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@utility display {
+  font-stretch: 68%;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+@utility carbon {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-carbon);
+}
+
+@utility perforation {
+  background-image: radial-gradient(circle, var(--color-navy-soft) 1.5px, transparent 1.6px);
+  background-size: 8px 8px;
+  background-position: center;
+  background-repeat: repeat-y;
+}
+
+@utility notched {
+  --notch-r: 9px;
+  mask:
+    radial-gradient(circle at var(--notch-x, 5rem) 0, transparent var(--notch-r), #000 calc(var(--notch-r) + 0.5px)) top / 100% 51% no-repeat,
+    radial-gradient(circle at var(--notch-x, 5rem) 100%, transparent var(--notch-r), #000 calc(var(--notch-r) + 0.5px)) bottom / 100% 51% no-repeat;
+}
+
+@utility tab {
+  clip-path: polygon(0 100%, 0 6px, 6px 0, calc(100% - 6px) 0, 100% 6px, 100% 100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .stamp-in {
+    animation: stamp-in 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+@keyframes stamp-in {
+  from {
+    opacity: 0;
+    transform: rotate(var(--stamp-rotate, -8deg)) scale(1.6);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(var(--stamp-rotate, -8deg)) scale(1);
+    filter: blur(0);
+  }
+}
