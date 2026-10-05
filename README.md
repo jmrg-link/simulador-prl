@@ -8,6 +8,8 @@ terminar hay un informe con veredicto de apto o no apto y el vídeo de la sesió
 No hay gafas reales. El navegador simula con three.js a un alumno que se pone el visor, y la cabeza se gira con
 el ratón o con las flechas. El lienzo WebGL de esa escena es la fuente de vídeo de todo lo demás.
 
+Los diagramas interactivos de la arquitectura están publicados en https://jmrg-link.github.io/simulador-prl/.
+
 ## Cómo funciona
 
 Una sesión tiene tres partes: el briefing, un recorrido de tres minutos y el debriefing. Alumno e instructor
@@ -21,6 +23,15 @@ al cerrar la emisión se convierte en un MP4 con un capítulo por riesgo identif
 
 Las decisiones del alumno las corrige el servidor, que no envía la respuesta correcta hasta que la sesión se
 cierra. Las métricas se guardan en PostgreSQL y llegan al instructor por SSE.
+
+### Escena 3D
+
+El taller se modela con scripts de Blender (`frontend/blender/`) a partir de modelos y texturas CC0 de Poly Haven. Lo
+ilumina el HDRI [`empty_warehouse_01`](https://polyhaven.com/a/empty_warehouse_01), que el frontal carga como entorno:
+da la luz y los reflejos de los materiales, pero no se pinta como fondo. Lo que se ve son las paredes, el suelo y
+los objetos del modelo.
+
+![Panorámica del HDRI empty_warehouse_01 que ilumina el taller](docs/escena/taller-hdri.jpg)
 
 ### Diagramas
 
@@ -124,6 +135,7 @@ frontend/   React 19 con Vite, three.js y Tailwind 4
 docs/
   prd/                       un documento de requisitos por capacidad
   arquitectura/              diagramas interactivos y sus vistas previas
+  escena/                    vista del HDRI que ilumina la escena 3D
 ```
 
 Son dos proyectos independientes, cada uno con su `package.json`, su lockfile y su `compose.yml`. No comparten
