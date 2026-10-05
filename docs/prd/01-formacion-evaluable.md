@@ -3,7 +3,7 @@
 | Campo | Valor |
 | --- | --- |
 | Estado | Implementado |
-| Versión | 1.1 |
+| Versión | 1.2 |
 | Última revisión | 2026-10-05 |
 | Proyectos | backend, frontend |
 
@@ -48,6 +48,7 @@ severidad alta, y un derrame de aceite y un extintor bloqueado, de severidad med
 | RF-08 | Cada riesgo vale dos puntos, uno por identificarlo y otro por acertar la actuación. |
 | RF-09 | Aprueba quien obtiene el 75 % de los puntos o más y resuelve bien todos los riesgos de severidad alta. |
 | RF-10 | El informe muestra el veredicto, la nota y cada criterio con su resultado. Por cada riesgo enseña la ficha, la actuación elegida frente a la correcta y la norma aplicable. |
+| RF-11 | Cada riesgo tiene una zona de mirada invisible que envuelve sus piezas con 30 cm de holgura, para que una pieza fina como un cable no exija una puntería exacta. No hay pistas: la prueba sigue siendo de búsqueda. |
 
 ## 7. Requisitos no funcionales
 
@@ -66,6 +67,7 @@ severidad alta, y un derrame de aceite y un extintor bloqueado, de severidad med
 | CA-03 | Con la sesión abierta, `measureCorrect` y `correctOption` valen `null`; al cerrarla aparecen. | `backend/tests/trainings.routes.test.ts` |
 | CA-04 | Cuatro riesgos identificados con tres aciertos dan un 88 % y apto. Fallar un riesgo de severidad alta da no apto. | `backend/tests/trainings.routes.test.ts` |
 | CA-05 | La mirada sostenida identifica un riesgo, y el contador vuelve a cero si la mirada se aparta. | `frontend/tests/gaze-tracker.test.ts` |
+| CA-06 | Una mirada que pasa a 20 cm de un cable lo encuentra, y una que pasa más allá del margen no. | `frontend/tests/gaze-zones.test.ts` |
 
 ## 9. Métricas
 
@@ -93,6 +95,7 @@ Varios intentos en la misma sesión, puntos ponderados por severidad y preguntas
 | --- | --- | --- |
 | 2026-10-05 | La respuesta correcta solo se revela al cerrar la sesión. | En modo aula el alumno ve la misma pantalla que el instructor. |
 | 2026-10-05 | En el informe y en el veredicto, lo correcto va en verde y lo incorrecto en rojo. | El resultado se entiende de un vistazo. |
+| 2026-10-05 | Zona de mirada más amplia en vez de pistas guiadas. | Se evalúa si el alumno ve el riesgo, no su puntería; una pista cambiaría lo que mide la prueba. |
 
 ## 14. Referencias
 

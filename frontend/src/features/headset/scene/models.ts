@@ -9,6 +9,7 @@ import { Mesh, Vector3, type Material, type MeshStandardMaterial, type Object3D 
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
 import { prepareContactShadow } from "./contact-shadow.ts";
+import { addGazeZone, GAZE_ZONE_NAME } from "./gaze-zones.ts";
 
 /** Rutas de los modelos servidos desde `public/`. */
 export const MODEL_URLS = {
@@ -54,7 +55,7 @@ const enableShadows = (root: Object3D): void => {
 const ownMaterials = (root: Object3D): MeshStandardMaterial[] => {
   const materials: MeshStandardMaterial[] = [];
   root.traverse((object) => {
-    if (!(object instanceof Mesh)) return;
+    if (!(object instanceof Mesh) || object.name === GAZE_ZONE_NAME) return;
     const material = (object.material as Material).clone() as MeshStandardMaterial;
     object.material = material;
     materials.push(material);
@@ -86,7 +87,9 @@ export const useWorkshop = (): PreparedWorkshop => {
   return useMemo(() => {
     enableShadows(gltf.scene);
     prepareContactShadow(gltf.scene);
-    return { scene: gltf.scene, hazards: collectHazards(gltf.scene), spark: sparkPosition(gltf.scene) };
+    const hazards = collectHazards(gltf.scene);
+    for (const { root } of hazards) addGazeZone(root);
+    return { scene: gltf.scene, hazards, spark: sparkPosition(gltf.scene) };
   }, [gltf]);
 };
 
