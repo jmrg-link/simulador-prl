@@ -162,4 +162,14 @@ y el test que demuestra cada uno.
 | [05](docs/prd/05-escena-3d.md) | Escena 3D y simulación de las gafas |
 | [06](docs/prd/06-interfaz-modo-aula.md) | Interfaz en modo aula y sistema visual |
 
-Los modelos 3D usan assets CC0 de Poly Haven, listados en `frontend/public/models/SOURCES.txt`.
+## Autor
+
+Diseñado y desarrollado por Jesús María Rico González ([jmrg.dev](https://jmrg.dev)).
+
+## Créditos
+
+- Modelos, texturas y HDRI: assets CC0 de [Poly Haven](https://polyhaven.com), listados en
+  `frontend/public/models/SOURCES.txt`.
+- Servidor RTMP: [Node-Media-Server](https://github.com/illuspas/Node-Media-Server), con licencia Apache-2.0.
+- Visor de los diagramas de `docs/arquitectura/`: archify, con licencia MIT; el aviso está en
+  `docs/arquitectura/NOTICE`.

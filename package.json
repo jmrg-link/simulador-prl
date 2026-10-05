@@ -2,6 +2,7 @@
   "name": "simulador-prl",
   "private": true,
   "description": "Validación de mensajes de commit del repositorio. Cada proyecto se instala y se ejecuta desde su carpeta.",
+  "author": "Jesús María Rico González <buzon@jmrg.dev> (https://jmrg.dev)",
   "scripts": {
     "prepare": "husky"
   },

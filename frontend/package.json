@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "Simulador de gafas VR (three.js) que emite por WebRTC y RTMP, panel del instructor y visor HLS",
+  "author": "Jesús María Rico González <buzon@jmrg.dev> (https://jmrg.dev)",
   "type": "module",
   "engines": {
     "node": ">=24 <25"

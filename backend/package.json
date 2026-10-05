@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "API de formación VR: métricas, señalización WebRTC e ingesta RTMP → HLS",
+  "author": "Jesús María Rico González <buzon@jmrg.dev> (https://jmrg.dev)",
   "type": "module",
   "engines": {
     "node": ">=24 <25"
