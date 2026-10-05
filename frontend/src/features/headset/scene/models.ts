@@ -1,12 +1,14 @@
 /**
  * Carga de los modelos generados con Blender (`blender/build_all.py`) y preparación para la escena:
- * sombras, riesgos marcados para el raycast y materiales propios para poder iluminarlos.
+ * sombras, sombra de contacto horneada, riesgos marcados para el raycast y materiales propios para
+ * poder iluminarlos.
  */
 import { useLoader } from "@react-three/fiber";
 import { useMemo } from "react";
 import { Mesh, Vector3, type Material, type MeshStandardMaterial, type Object3D } from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
+import { prepareContactShadow } from "./contact-shadow.ts";
 
 /** Rutas de los modelos servidos desde `public/`. */
 export const MODEL_URLS = {
@@ -14,6 +16,7 @@ export const MODEL_URLS = {
   trainee: "/models/trainee.glb",
   goggles: "/models/goggles.glb",
   environment: "/models/workshop.hdr",
+  background: "/models/workshop-fondo.jpg",
 } as const;
 
 const HAZARD_PREFIX = "Hazard_";
@@ -82,6 +85,7 @@ export const useWorkshop = (): PreparedWorkshop => {
   const gltf = useLoader(GLTFLoader, MODEL_URLS.workshop, withMeshopt);
   return useMemo(() => {
     enableShadows(gltf.scene);
+    prepareContactShadow(gltf.scene);
     return { scene: gltf.scene, hazards: collectHazards(gltf.scene), spark: sparkPosition(gltf.scene) };
   }, [gltf]);
 };

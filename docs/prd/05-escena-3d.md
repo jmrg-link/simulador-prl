@@ -3,7 +3,7 @@
 | Campo | Valor |
 | --- | --- |
 | Estado | Implementado |
-| Versión | 1.1 |
+| Versión | 1.2 |
 | Última revisión | 2026-10-05 |
 | Proyectos | frontend |
 
@@ -28,8 +28,9 @@ el alumno gira la cabeza con el ratón o con las flechas.
 
 ## 5. Alcance
 
-Los modelos salen de scripts de Blender exportados a glTF, con assets CC0 de Poly Haven. La escena se ilumina con
-un HDRI, y el grafismo de emisión se pinta dentro del mismo lienzo.
+Los modelos salen de scripts de Blender exportados a glTF, con assets CC0 de Poly Haven. La nave es la fotografía
+HDRI de un almacén real, proyectada con suelo, y los puestos y los riesgos modelados se apoyan en ella. El grafismo
+de emisión se pinta dentro del mismo lienzo.
 
 ## 6. Requisitos funcionales
 
@@ -42,16 +43,19 @@ un HDRI, y el grafismo de emisión se pinta dentro del mismo lienzo.
 | RF-05 | El HUD de la lente (viñeta y retícula con su progreso) y el grafismo de emisión se pintan dentro del lienzo y nunca se desenfocan. |
 | RF-06 | La vista del alumno tiene un botón de pantalla completa. |
 | RF-07 | Mientras se descargan los modelos, el lienzo muestra un aviso de carga. |
+| RF-08 | El entorno visible es la panorámica del HDRI con el suelo proyectado. La escena no tiene paredes ni techo modelados. |
+| RF-09 | Los objetos modelados proyectan sombra de contacto sobre el suelo de la nave, horneada y en tiempo real. |
 
 ## 7. Requisitos no funcionales
 
 | Id | Requisito |
 | --- | --- |
 | RNF-01 | Materiales PBR con texturas reales y tone mapping Neutral, para que los colores de seguridad no cambien. |
-| RNF-02 | Modelos comprimidos con meshopt y texturas WebP, con un peso total por debajo de 10 MB. |
+| RNF-02 | Modelos comprimidos con meshopt y texturas WebP, y fondo en JPG de 4096 × 2048. Modelos, HDRI y fondo pesan en total menos de 10 MB. |
 | RNF-03 | Imagen nítida con multimuestreo 4×. Si hay profundidad de campo, es sutil, porque la pantalla de un visor real es nítida entera. |
 | RNF-04 | Los modelos se regeneran igual cada vez con un solo comando, y se versionan. |
 | RNF-05 | Los lectores de pantalla tienen una descripción textual de la escena. |
+| RNF-06 | El fondo y la iluminación salen de la misma captura y comparten orientación. La luz usa el HDR de 1k y el fondo, la versión tonemapeada, que no vuelve a pasar por el tone mapping. |
 
 ## 8. Criterios de aceptación
 
@@ -60,6 +64,7 @@ un HDRI, y el grafismo de emisión se pinta dentro del mismo lienzo.
 | CA-01 | `pnpm run assets` regenera los tres modelos y el HDRI. | Comprobación manual |
 | CA-02 | En la vista inmersiva, mantener la mirada sobre la carga suspendida la identifica. | Comprobación manual |
 | CA-03 | Se filtran los avisos conocidos de las dependencias, y los demás siguen apareciendo. | `frontend/tests/three-console.test.ts` |
+| CA-04 | Desde la posición del alumno se ve la nave de la fotografía, y los objetos se apoyan en su suelo con sombra, sin flotar. | Comprobación manual con captura |
 
 ## 9. Métricas
 
@@ -75,10 +80,18 @@ Blender 5.2 para regenerar los modelos, three.js y su integración con React.
 | --- | --- |
 | Un hueco entre objetos deja la retícula sin nada que mirar. | Los riesgos se modelan sin huecos en el centro de la vista. |
 | La versión estable de la integración con React todavía usa un reloj marcado como obsoleto. | El aviso se filtra hasta pasar a la siguiente versión mayor. |
+| La ficha del HDRI no publica la altura de la cámara ni la dirección de la luz. | La altura del suelo proyectado y la luz con sombra se ajustan comparando capturas con la fotografía. |
 
 ## 12. Fuera de alcance
 
 Un avatar fotorrealista con rostro, gafas físicas y seguimiento de posición.
+
+## 13. Decisiones
+
+| Fecha | Decisión | Motivo |
+| --- | --- | --- |
+| 2026-10-05 | La nave del HDRI sustituye a las paredes y el techo modelados. | El taller cerrado no se parecía a un almacén real. |
+| 2026-10-05 | El fondo es el JPG tonemapeado oficial de Poly Haven, reescalado a 4k. | Se ve nítido a pantalla completa y pesa una fracción del HDR de 4k. |
 
 ## 14. Referencias
 

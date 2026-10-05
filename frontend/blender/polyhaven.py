@@ -68,3 +68,11 @@ def hdri(asset: str) -> Path:
     SOURCES.add(asset)
     url = _fetch_json(asset)["hdri"][RESOLUTION]["hdr"]["url"]
     return _download(url, CACHE / asset / Path(url).name)
+
+
+def tonemapped(asset: str) -> Path:
+    """Ruta local de la panorámica LDR oficial del HDRI, un JPG ya tonemapeado a su resolución máxima.
+    Sirve de fondo visible; la iluminación sigue saliendo del .hdr."""
+    SOURCES.add(asset)
+    url = _fetch_json(asset)["tonemapped"]["url"]
+    return _download(url, CACHE / asset / "tonemapped.jpg")

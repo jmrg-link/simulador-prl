@@ -202,6 +202,59 @@ def export_glb(path: Path) -> None:
     )
 
 
+def resized_jpeg(source: Path, target: Path, size: tuple[int, int], quality: int = 85) -> None:
+    """Guarda `source` reescalada a `size` como JPEG en `target`, con sus píxeles tal cual, sin
+    aplicar la transformación de vista de la escena."""
+    image = bpy.data.images.load(str(source))
+    image.scale(*size)
+    image.file_format = "JPEG"
+    image.save(filepath=str(target), quality=quality)
+    bpy.data.images.remove(image)
+
+
+def contact_shadow(name: str, size: float, resolution: int, image_path: Path, exclude: list[bpy.types.Object],
+                   distance: float = 1.2, samples: int = 64) -> bpy.types.Object:
+    """Plano de suelo con la oclusión ambiental que le provoca todo lo que hay encima, horneada con
+    Cycles. Blanco donde nada lo tapa y más oscuro al pie de cada objeto: el frontal lo multiplica
+    sobre el suelo de la fotografía para que los objetos se apoyen en él. Las piezas de `exclude`,
+    planas y pegadas al suelo, no cuentan: a esa distancia saldrían como manchas negras."""
+    bpy.ops.mesh.primitive_plane_add(size=size, location=(0, 0, 0.002))
+    plane = bpy.context.object
+    plane.name = name
+    image = bpy.data.images.new(name, resolution, resolution, alpha=False)
+    image.colorspace_settings.name = "Non-Color"
+    mat = bpy.data.materials.new(name)
+    nodes = mat.node_tree.nodes
+    texture = nodes.new("ShaderNodeTexImage")
+    texture.image = image
+    mat.node_tree.links.new(texture.outputs["Color"], nodes["Principled BSDF"].inputs["Base Color"])
+    nodes["Principled BSDF"].inputs["Roughness"].default_value = 1.0
+    nodes.active = texture
+    assign(plane, mat)
+    for obj in exclude:
+        obj.hide_render = True
+    _bake_ambient_occlusion(plane, distance, samples)
+    for obj in exclude:
+        obj.hide_render = False
+    image.filepath_raw = str(image_path)
+    image.file_format = "PNG"
+    image.save()
+    return plane
+
+
+def _bake_ambient_occlusion(target: bpy.types.Object, distance: float, samples: int) -> None:
+    """Hornea con Cycles la oclusión ambiental de `target` en la imagen activa de su material."""
+    scene = bpy.context.scene
+    scene.render.engine = "CYCLES"
+    scene.cycles.device = "CPU"
+    scene.cycles.samples = samples
+    scene.world.light_settings.distance = distance
+    bpy.ops.object.select_all(action="DESELECT")
+    target.select_set(True)
+    bpy.context.view_layer.objects.active = target
+    bpy.ops.object.bake(type="AO", margin=4)
+
+
 def textured_material(name: str, maps: dict, base_color: tuple[float, float, float] | None = None,
                       metallic: float = 0.0, normal_strength: float = 1.0) -> bpy.types.Material:
     """Material PBR con mapas de imagen (difuso, rugosidad, normal). Con `base_color` se usa ese color
