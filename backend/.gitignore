@@ -1,0 +1,17 @@
+# Dependencias
+node_modules/
+
+# Cliente Prisma generado
+/src/generated/
+
+# Variables de entorno: solo se versiona el ejemplo
+.env
+.env.*
+!.env.example
+
+# Datos de ejecución
+/media/
+/recordings/
+
+# Cobertura de tests
+/coverage/

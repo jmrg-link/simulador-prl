@@ -1,0 +1,46 @@
+{
+  "name": "simulador-prl-backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "API de formación VR: métricas, señalización WebRTC e ingesta RTMP → HLS",
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "node --watch --env-file-if-exists=.env src/main.ts",
+    "start": "node src/main.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "node --test --test-reporter=spec \"tests/**/*.test.ts\"",
+    "test:watch": "node --test --watch \"tests/**/*.test.ts\"",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "verify": "pnpm run typecheck && pnpm run lint && pnpm test",
+    "test:coverage": "node --test --experimental-test-coverage \"tests/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "7.10.0",
+    "@prisma/client": "7.10.0",
+    "express": "5.2.1",
+    "node-media-server": "4.4.3",
+    "pg": "8.23.1",
+    "ws": "8.22.0",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/express": "5.0.6",
+    "@types/node": "24.19.1",
+    "@types/pg": "8.23.1",
+    "@types/ws": "8.18.2",
+    "eslint": "10.12.0",
+    "eslint-plugin-jsdoc": "65.1.0",
+    "globals": "17.13.0",
+    "prisma": "7.10.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.0"
+  },
+  "packageManager": "pnpm@11.18.0"
+}

@@ -1,0 +1,18 @@
+# Dependencias
+node_modules/
+
+# Build
+/dist/
+
+# Variables de entorno: solo se versiona el ejemplo
+.env
+.env.*
+!.env.example
+
+# Caché de assets descargados y de Python al generar los modelos con Blender
+/blender/.cache/
+__pycache__/
+*.pyc
+
+# Cobertura de tests
+/coverage/
